@@ -5,6 +5,8 @@ export default function useTasks() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [selectedPriority, setSelectedPriority] = useState([]);
+    const [sortOrder, setSortOrder] = useState(null);
 
     const isFirstLoad = useRef(true);
 
@@ -90,7 +92,7 @@ export default function useTasks() {
         );
     }
 
-     useEffect(() => {
+    useEffect(() => {
         const timer = setTimeout(() => {
             setSearchQuery(searchQuery);
         }, 700);
@@ -99,26 +101,53 @@ export default function useTasks() {
     }, [searchQuery]);
 
     const filteredTasks = useMemo(() => {
-        if (!searchQuery.trim()) {
-            return tasks;
+        let result = tasks;
+        
+        if (searchQuery.trim()) {
+            const query = searchQuery.toLowerCase().trim();
+            result = result.filter(task => 
+                task.title.toLowerCase().includes(query)
+            );
         }
         
-        const query = searchQuery.toLowerCase().trim();
-        return tasks.filter(task => 
-            task.title.toLowerCase().includes(query)
-        );
-    }, [tasks, searchQuery]);
+        if (selectedPriority.length > 0) {
+            result = result.filter(task => 
+                selectedPriority.includes(task.priority)
+            );
+        }
+
+        if (sortOrder === 'newest') {
+            result = [...result].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        } else if (sortOrder === "oldest") {
+            result = [...result].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+        }
+        
+        return result;
+    }, [tasks, searchQuery, selectedPriority, sortOrder]);
+
+    const togglePriority = (priority) => {
+    if (selectedPriority.includes(priority)) {
+        setSelectedPriority(prev => prev.filter(p => p !== priority));
+    } else {
+        setSelectedPriority(prev => [...prev, priority]);
+    }
+};
 
     return {
         tasks,
         loading,
         error,
         searchQuery,
+        filteredTasks,
+        selectedPriority,
+        sortOrder,
+        setSortOrder,
+        setSelectedPriority,
+        togglePriority,
         setSearchQuery,
         createTask,
         updateTask,
         deleteTask,
         toggleTask,
-        filteredTasks,
     };
 }

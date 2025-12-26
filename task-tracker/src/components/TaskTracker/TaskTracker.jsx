@@ -3,6 +3,7 @@ import TaskForm from './TaskForm'
 import useTasks from './useTasks';
 import TaskList from './TaskList';
 import TaskSearch from './TaskSearch';
+import TaskFilter from './TaskFilter';
 import { useState } from 'react';
 
 export default function TaskTracker () {
@@ -13,12 +14,17 @@ export default function TaskTracker () {
     loading, 
     error,
     searchQuery,
+    filteredTasks,
+    selectedPriority,
+    sortOrder,
+    setSortOrder,
+    setSelectedPriority,
+    togglePriority,
     setSearchQuery,
     createTask, 
     toggleTask, 
     deleteTask,
     updateTask,
-    filteredTasks
   } = useTasks();
   
   if (loading) {
@@ -46,6 +52,14 @@ export default function TaskTracker () {
 
       <button className='toggle-form-btn' onClick={() => setShowForm(!showForm)}>Создать задачу</button>
       {showForm && <TaskForm onSubmit={createTask} />}
+
+      <TaskFilter 
+      selectedPriorities={selectedPriority}
+      onPriorityToggle={togglePriority}
+      onSelectAll={() => setSelectedPriority([])}
+      sortOrder={sortOrder}
+      setSortOrder={setSortOrder}
+    />
       
       <section className='task-list-container'>
         <h2>Ваши задачи:</h2>
