@@ -1,0 +1,473 @@
+/* ===== ОСНОВНЫЕ СТИЛИ ===== */
+.task-tracker {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    color: #333;
+}
+
+/* ===== СЕКЦИЯ ЗАГОЛОВКА ===== */
+.task-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.task-header h1 {
+    font-size: 2.5rem;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+
+.stats {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.loading {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.error {
+  text-align: center;
+  padding: 50px;
+  font-size: 1.2rem;
+  color: #f44336;
+  background-color: #ffebee;
+  border-radius: 8px;
+  margin: 20px;
+}
+
+/* Стили для task-list-container */
+.task-list-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eaeaea;
+}
+
+.task-list-container h2 {
+  font-size: 1.5rem;
+  margin: 0 0 25px 0;
+  color: #2c3e50;
+}
+
+/* Стили для задач */
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: white;
+  transition: all 0.2s ease;
+}
+
+.task-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.task-item.completed {
+  opacity: 0.7;
+  background-color: #f9f9f9;
+}
+
+.task-content {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+}
+
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.task-text {
+  flex: 1;
+}
+
+.task-title {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-description {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.priority {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.priority-low {
+  background-color: #e8f5e9;
+  color: #4CAF50;
+}
+
+.priority-medium {
+  background-color: #fff3e0;
+  color: #FF9800;
+}
+
+.priority-high {
+  background-color: #ffebee;
+  color: #f44336;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #ffebee;
+  color: #f44336;
+}
+
+/* ===== СЕКЦИЯ ФОРМЫ ===== */
+.task-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+    border: 1px solid #eaeaea;
+}
+
+.task-form h2 {
+    font-size: 1.5rem;
+    margin: 0 0 25px 0;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-form h2::before {
+    content: "＋";
+    background: #4CAF50;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.toggle-form-btn {
+    background-color: #667eea;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.toggle-form-btn:hover {
+    background-color: #5a6fd8;
+}
+
+.search-container {
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  padding: 10px;
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* ===== ОДИНАКОВЫЕ СТИЛИ ДЛЯ ВСЕХ ЭЛЕМЕНТОВ ФОРМЫ ===== */
+.task-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task-form label {
+    font-weight: 600;
+    color: #444;
+    font-size: 0.95rem;
+    display: block;
+}
+
+/* ЕДИНЫЕ СТИЛИ ДЛЯ INPUT, TEXTAREA И SELECT */
+.task-form input[type="text"],
+.task-form textarea,
+.task-form select {
+    /* Одинаковая ширина и box-sizing */
+    width: 100%;
+    box-sizing: border-box;
+    
+    /* Одинаковые отступы */
+    padding: 12px 15px;
+    margin: 0;
+    
+    /* Одинаковые рамки */
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    
+    /* Одинаковые шрифты */
+    font-size: 1rem;
+    font-family: inherit;
+    
+    /* Одинаковый фон */
+    background-color: #f9f9f9;
+    
+    /* Сбрасываем стандартные стили браузера */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Особенности для textarea */
+.task-form textarea {
+    min-height: 80px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* Особенности для select (без кастомной стрелки) */
+.task-form select {
+    cursor: pointer;
+    padding-right: 15px; /* Стандартный отступ */
+}
+
+/* Состояния фокуса и ховера - одинаковые для всех */
+.task-form input[type="text"]:focus,
+.task-form textarea:focus,
+.task-form select:focus {
+    outline: none;
+    border-color: #667eea;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.task-form input[type="text"]:hover,
+.task-form textarea:hover,
+.task-form select:hover {
+    border-color: #a0a0a0;
+}
+
+/* Стили для кнопки */
+.task-form button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.task-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.task-form button:active {
+    transform: translateY(0);
+}
+
+/* ===== СЕКЦИЯ СПИСКА ЗАДАЧ ===== */
+.task-list {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eaeaea;
+}
+
+.task-list h2 {
+    font-size: 1.5rem;
+    margin: 0 0 25px 0;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-list h2::before {
+    content: "📋";
+    font-size: 1.3rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #888;
+    font-size: 1.1rem;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.empty-state::before {
+    content: "📭";
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+/* ===== ПРИОРИТЕТЫ (цветовые индикаторы) ===== */
+.priority-low {
+    color: #4CAF50;
+    background-color: #e8f5e9;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.priority-medium {
+    color: #FF9800;
+    background-color: #fff3e0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.priority-high {
+    color: #f44336;
+    background-color: #ffebee;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+    .task-tracker {
+        padding: 15px;
+    }
+    
+    .task-header {
+        padding: 20px 15px;
+        margin-bottom: 30px;
+    }
+    
+    .task-header h1 {
+        font-size: 2rem;
+    }
+    
+    .task-form,
+    .task-list {
+        padding: 20px;
+    }
+    
+    .task-form input[type="text"],
+    .task-form textarea,
+    .task-form select {
+        padding: 10px 12px;
+    }
+    
+    .task-form button {
+        padding: 12px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .task-header h1 {
+        font-size: 1.7rem;
+    }
+    
+    .task-form h2,
+    .task-list h2 {
+        font-size: 1.3rem;
+    }
+    
+    .stats {
+        font-size: 1rem;
+    }
+    
+    .task-form form {
+        gap: 15px;
+    }
+    
+    .form-group {
+        gap: 6px;
+    }
+}
+
+/* ===== АНИМАЦИИ ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.task-form,
+.task-list {
+    animation: fadeIn 0.5s ease-out;
+}
