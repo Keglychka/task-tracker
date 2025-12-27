@@ -36,7 +36,7 @@ export default function TaskDetail({ onDelete, onUpdate }) {
         ...task,
         title: editTitle,
         description: editDesc,
-        priority: editPriority,
+        priority: editPriority
       });
     }
   }
