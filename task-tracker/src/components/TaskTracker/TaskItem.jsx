@@ -1,11 +1,13 @@
 import './TaskTracker.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function TaskItem({ task, onToggle, onDelete, onUpdate }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(task.title);
   const [editDesc, setEditDesc] = useState(task.description || '');
   const [editPriority, setEditPriority] = useState(task.priority);
+  const navigate = useNavigate();
 
   const handleSaveClick = () => {
     onUpdate(task.id, {
@@ -58,6 +60,7 @@ export default function TaskItem({ task, onToggle, onDelete, onUpdate }) {
         >
           🗑
         </button>
+        <button className='delete-btn' onClick={() => navigate(`/tasks/${task.id}`)}>Открыть</button>
       </div>
     );
   }
